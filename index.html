@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>How many repeaters do you need for a (time) delay?</title>
+		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+		<style>
+			body{
+				font-family: 'Roboto', sans-serif;
+				padding-top: 60px;
+			}
+			header{
+				background-color: blue;
+				color: white;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 50px;
+			}
+			#header-inner{
+				position: fixed;
+				top: 13px;
+				left: 20px;
+				font-size: 20px;
+			}
+		</style>
+		<script>
+			document.addEventListener("DOMContentLoaded", function(){
+				document.getElementById("secs-btn").onclick = function(e){
+					var time = parseInt(document.getElementById("secs").value);
+					//var repeatersNeeded = 0;
+					var twoTickRepeaters = 0;
+					var fourTickRepeaters = 0;
+					//twoTickRepeaters += time;
+					//fourTickRepeaters += (time*2);
+					//repeatersNeeded += (time*3);
+					//alert(time);
+					//alert(twoTickRepeaters);
+					//alert(fourTickRepeaters);
+					//alert(repeatersNeeded);
+					twoTickRepeaters = time;
+					fourTickRepeaters = time*2;
+					//alert(twoTickRepeaters*2 + fourTickRepeaters*4);
+					var hasTTR = twoTickRepeaters/2 % 1 != 0;
+					var ttr = hasTTR ? 1 : 0;
+					var ftr = fourTickRepeaters + (hasTTR ? twoTickRepeaters/2-0.5 : twoTickRepeaters/2);
+					//alert(hasTTR + " " + ftr + " " + ttr);
+					document.getElementById("ttr").innerText = ttr;
+					document.getElementById("ftr").innerText = ftr;
+					document.getElementById("tticks").innerText = twoTickRepeaters*2 + fourTickRepeaters*4;
+				};
+			});
+		</script>
+	</head>
+	<body>
+		<header>
+			<div id="header-inner">
+				Seconds to Redstone Ticks
+			</div>
+		</header>
+		How many seconds: <input type="number" id="secs"> <input type="button" id="secs-btn" value="Calculate"><br/>
+		Two Tick Repeaters: <span id='ttr'>0</span><br/>
+		Four Tick Repeaters: <span id='ftr'>0</span><br/>
+		Total Redstone Ticks: <span id='tticks'>0</span><br/>
+		
+		<br><br><br><br><br><br><br><br><br><br>
+		Copyright &copy; 2017 Mrcomputer1
+	</body>
+</html>
