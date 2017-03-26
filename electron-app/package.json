@@ -1,0 +1,11 @@
+{
+  "name": "repeaters-delay-calculator",
+  "version": "1.0.0",
+  "description": "Calculates how many repeaters you need for a X second delay.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mrcomputer1",
+  "license": "MIT"
+}
