@@ -1,0 +1,9 @@
+{
+	"header.title": "Seconds to Redstone Ticks",
+	"labels.how_many_seconds": "How many seconds",
+	"labels.two_tick_repeaters": "Two Tick Repeaters",
+	"labels.four_tick_repeaters": "Four Tick Repeaters",
+	"labels.total_redstone_ticks": "Total Redstone Ticks",
+	"labels.calculate": "Calculate",
+	"copyright": "Copyright"
+}
