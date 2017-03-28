@@ -30,7 +30,7 @@
 				var defaultLanguage = "en";
 				function changeLang(lang){
 					var xhr = new XMLHttpRequest();
-					xhr.open("GET", "language-reportersfor/" + lang + ".json", false);
+					xhr.open("GET", "locale/" + lang + ".json", false);
 					xhr.send();
 					var language = JSON.parse(xhr.responseText);
 					for(var e of qs){
