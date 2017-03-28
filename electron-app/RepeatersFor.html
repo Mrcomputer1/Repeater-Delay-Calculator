@@ -24,6 +24,29 @@
 			}
 		</style>
 		<script>
+			var fs = require("fs");
+			document.addEventListener("DOMContentLoaded", function(){
+				var qs = document.querySelectorAll("[data-i18n]");
+				var defaultLanguage = "en";
+				function changeLang(lang){
+					var language = JSON.parse(fs.readFileSync("languages/" + lang + ".json"));
+					for(var e of qs){
+						var value = e.getAttribute("data-i18n") == "labels.calculate";
+						if(value){
+							e.value = language[e.getAttribute("data-i18n")];
+						}else{
+							e.innerText = language[e.getAttribute("data-i18n")];
+						}
+					}
+				}
+				changeLang(defaultLanguage);
+				
+				document.getElementById("lang-chg").onchange = function(e){
+					changeLang(e.target.value);
+				};
+			});
+		</script>
+		<script>
 			document.addEventListener("DOMContentLoaded", function(){
 				document.getElementById("secs-btn").onclick = function(e){
 					var time = parseInt(document.getElementById("secs").value);
@@ -53,16 +76,22 @@
 	</head>
 	<body>
 		<header>
-			<div id="header-inner">
+			<div id="header-inner" data-i18n="header.title">
 				Seconds to Redstone Ticks
 			</div>
 		</header>
-		How many seconds: <input type="number" id="secs"> <input type="button" id="secs-btn" value="Calculate"><br/>
-		Two Tick Repeaters: <span id='ttr'>0</span><br/>
-		Four Tick Repeaters: <span id='ftr'>0</span><br/>
-		Total Redstone Ticks: <span id='tticks'>0</span><br/>
+		<span data-i18n="labels.how_many_seconds">How many seconds</span>: <input type="number" id="secs"> <input type="button" id="secs-btn" value="Calculate" data-i18n="labels.calculate"><br/>
+		<span data-i18n="labels.two_tick_repeaters">Two Tick Repeaters</span>: <span id='ttr'>0</span><br/>
+		<span data-i18n="labels.four_tick_repeaters">Four Tick Repeaters</span>: <span id='ftr'>0</span><br/>
+		<span data-i18n="labels.total_redstone_ticks">Total Redstone Ticks</span>: <span id='tticks'>0</span><br/>
 		
 		<br><br><br><br><br><br><br><br><br><br>
-		Copyright &copy; 2017 Mrcomputer1
+		<span data-i18n="copyright">Copyright</span> &copy; 2017 Mrcomputer1&nbsp;&nbsp;&nbsp;&nbsp;
+		<select id="lang-chg">
+			<option disabled>--Languages--</option>
+			<option value="en">English</option>
+			<option disabled>--Joke Languages--</option>
+			<option value="cats_en">Cats</option>
+		</select>
 	</body>
 </html>
